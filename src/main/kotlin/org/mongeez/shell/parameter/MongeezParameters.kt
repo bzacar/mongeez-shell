@@ -13,13 +13,7 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
                              var authenticationEnabled: Boolean = true,
                              var authenticationDatabase: String = "admin",
                              var userName: String? = null,
-                             var password: CharArray? = null,
-                             var debug: Boolean = false,
-                             var logConsole: Boolean = false) {
-
-    fun isReady(): Boolean {
-        return changeSetListFileParameter != null && (!authenticationEnabled || (userName != null && password != null))
-    }
+                             var password: CharArray? = null) {
 
     fun getMongoAuth(): MongoAuth? {
         return if (authenticationEnabled) {
@@ -42,9 +36,7 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
                 "userName" to userName,
                 "password" to password?.let { "***" },
                 "context" to context,
-                "useMongoShell" to useMongoShell,
-                "debug" to debug,
-                "logConsole" to logConsole)
+                "useMongoShell" to useMongoShell)
                 .filter { (_, value) -> value != null }
                 .toMap()
                 .toString()
@@ -70,8 +62,6 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
         } else if (other.password != null) return false
         if (context != other.context) return false
         if (useMongoShell != other.useMongoShell) return false
-        if (debug != other.debug) return false
-        if (logConsole != other.logConsole) return false
 
         return true
     }
@@ -87,8 +77,6 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
         result = 31 * result + (password?.contentHashCode() ?: 0)
         result = 31 * result + (context?.hashCode() ?: 0)
         result = 31 * result + useMongoShell.hashCode()
-        result = 31 * result + debug.hashCode()
-        result = 31 * result + logConsole.hashCode()
         return result
     }
 }
