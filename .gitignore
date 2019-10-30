@@ -1,0 +1,29 @@
+HELP.md
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+*.iws
+*.ipr
+
+*~
+**/.idea/
+**/target/
+**.iml
+**/build/
+**/out/
+**/.gradle/
+**.aux
+**.log
+**.out
+**.synctex.gz
+**/build/

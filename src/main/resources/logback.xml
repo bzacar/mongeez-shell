@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 minutes">
+  <contextName>mongeez-shell</contextName>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>mongeez-shell.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>[%date] [%-5level] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="FILE"/>
+  </root>
+</configuration>
