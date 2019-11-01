@@ -15,24 +15,29 @@ class MongeezLogParametersCommands(private val rootLogger: ch.qos.logback.classi
     @ShellMethod("Changes the log level to debug")
     fun enableDebugLogs(): String {
         rootLogger.level = Level.DEBUG
-        return outputMessageProvider.getEnableMethodMessage("Debug logs")
+        return outputMessageProvider.getEnableMethodMessage(DEBUG_LOGS_PROPERTY_NAME)
     }
 
     @ShellMethod("Changes the log level to info")
     fun disableDebugLogs(): String {
         rootLogger.level = Level.INFO
-        return outputMessageProvider.getDisableMethodMessage("Debug logs")
+        return outputMessageProvider.getDisableMethodMessage(DEBUG_LOGS_PROPERTY_NAME)
     }
 
     @ShellMethod("Adds a console log appender")
     fun enableConsoleLogs(): String {
         rootLogger.addAppender(consoleLogAppender)
-        return outputMessageProvider.getEnableMethodMessage("Console logs")
+        return outputMessageProvider.getEnableMethodMessage(CONSOLE_LOGS_PROPERTY_NAME)
     }
 
     @ShellMethod("Removes the console log appender")
     fun disableConsoleLogs(): String {
         rootLogger.detachAppender(consoleLogAppender)
-        return outputMessageProvider.getDisableMethodMessage("Console logs")
+        return outputMessageProvider.getDisableMethodMessage(CONSOLE_LOGS_PROPERTY_NAME)
+    }
+
+    internal companion object {
+        const val DEBUG_LOGS_PROPERTY_NAME = "Debug logs"
+        const val CONSOLE_LOGS_PROPERTY_NAME = "Console logs"
     }
 }

@@ -10,18 +10,24 @@ class MongeezMongoDBParametersCommands(private val outputMessageProvider: Output
     @ShellMethod("Sets the host name/address of the database server")
     fun setServerHostAddress(hostAddress: String): String {
         MONGEEZ_PARAMETERS.hostAddress = hostAddress
-        return outputMessageProvider.getSetMethodMessage("Host address", hostAddress)
+        return outputMessageProvider.getSetMethodMessage(HOST_ADDRESS_PROPERTY_NAME, hostAddress)
     }
 
     @ShellMethod("Sets the port of the database server")
     fun setServerPort(port: Int): String {
         MONGEEZ_PARAMETERS.port = port
-        return outputMessageProvider.getSetMethodMessage("Server port", port)
+        return outputMessageProvider.getSetMethodMessage(SERVER_PORT_PROPERTY_NAME, port)
     }
 
     @ShellMethod("Sets the name of the database on which the change sets will be executed")
     fun setDatabaseName(databaseName: String): String {
         MONGEEZ_PARAMETERS.databaseName = databaseName
-        return outputMessageProvider.getSetMethodMessage("Database name", databaseName)
+        return outputMessageProvider.getSetMethodMessage(DATABASE_NAME_PROPERTY_NAME, databaseName)
+    }
+
+    internal companion object {
+        const val HOST_ADDRESS_PROPERTY_NAME = "Host address"
+        const val SERVER_PORT_PROPERTY_NAME = "Server port"
+        const val DATABASE_NAME_PROPERTY_NAME = "Database name"
     }
 }

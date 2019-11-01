@@ -12,12 +12,12 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
                              var databaseName: String = "test",
                              var authenticationEnabled: Boolean = true,
                              var authenticationDatabase: String = "admin",
-                             var userName: String? = null,
+                             var username: String? = null,
                              var password: CharArray? = null) {
 
     fun getMongoAuth(): MongoAuth? {
         return if (authenticationEnabled) {
-            val userName = userName ?: error("User name is not provided!")
+            val userName = username ?: error("User name is not provided!")
             val password = password ?: error("Password is not provided!")
             MongoAuth(userName, password, authenticationDatabase)
         } else {
@@ -33,7 +33,7 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
                 "databaseName" to databaseName,
                 "authenticationEnabled" to authenticationEnabled,
                 "authenticationDatabase" to authenticationDatabase,
-                "userName" to userName,
+                "username" to username,
                 "password" to password?.let { "***" },
                 "context" to context,
                 "useMongoShell" to useMongoShell)
@@ -54,7 +54,7 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
         if (databaseName != other.databaseName) return false
         if (authenticationEnabled != other.authenticationEnabled) return false
         if (authenticationDatabase != other.authenticationDatabase) return false
-        if (userName != other.userName) return false
+        if (username != other.username) return false
         val password = password
         if (password != null) {
             val otherPassword = other.password ?: return false
@@ -73,7 +73,7 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
         result = 31 * result + databaseName.hashCode()
         result = 31 * result + authenticationEnabled.hashCode()
         result = 31 * result + authenticationDatabase.hashCode()
-        result = 31 * result + (userName?.hashCode() ?: 0)
+        result = 31 * result + (username?.hashCode() ?: 0)
         result = 31 * result + (password?.contentHashCode() ?: 0)
         result = 31 * result + (context?.hashCode() ?: 0)
         result = 31 * result + useMongoShell.hashCode()

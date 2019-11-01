@@ -25,7 +25,7 @@ class MongeezCommands {
             if (changeSetListFileParameter == null) {
                 Availability.unavailable("change set list file path is not provided")
             } else {
-                if (authenticationEnabled && (userName == null || password == null)) {
+                if (authenticationEnabled && (username == null || password == null)) {
                     Availability.unavailable("authentication is enabled but username or password is missing")
                 } else {
                     Availability.available()
