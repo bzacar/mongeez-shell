@@ -7,6 +7,7 @@ import mu.KLogger
 import mu.KotlinLogging
 import org.jline.utils.AttributedString
 import org.jline.utils.AttributedStyle
+import org.mongeez.Mongeez
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.InjectionPoint
@@ -20,6 +21,12 @@ class MongeezShellConfiguration {
     @Bean
     fun promptProvider(): PromptProvider {
         return PromptProvider { AttributedString("mongeez-shell:>", AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW)) }
+    }
+
+    @Bean
+    @Scope("prototype")
+    fun mongeez(): Mongeez {
+        return Mongeez()
     }
 
     @Bean

@@ -15,15 +15,19 @@ data class MongeezParameters(var changeSetListFileParameter: String? = null,
                              var username: String? = null,
                              var password: CharArray? = null) {
 
-    fun getMongoAuth(): MongoAuth? {
-        return if (authenticationEnabled) {
-            val userName = username ?: error("User name is not provided!")
-            val password = password ?: error("Password is not provided!")
-            MongoAuth(userName, password, authenticationDatabase)
-        } else {
-            null
+    val changeSetListFile: String
+        get() = changeSetListFileParameter ?: error("Change set list file path must have been set")
+
+    val mongoAuth: MongoAuth?
+        get() {
+            return if (authenticationEnabled) {
+                val userName = username ?: error("User name is not provided!")
+                val password = password ?: error("Password is not provided!")
+                MongoAuth(userName, password, authenticationDatabase)
+            } else {
+                null
+            }
         }
-    }
 
     override fun toString(): String {
         return sequenceOf(
