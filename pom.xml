@@ -10,7 +10,7 @@
 
   <groupId>com.github.bzacar</groupId>
   <artifactId>mongeez-shell</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
 
   <name>Mongeez Shell</name>
   <description>Spring shell application to use mongeez library</description>
